@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
-import About from './components/About'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -48,10 +46,6 @@ const App = () => {
     const data = await res.json()
 
     setTasks([...tasks, data])
-
-    // const id = Math.floor(Math.random() * 10000) + 1
-    // const newTask = { id, ...task }
-    // setTasks([...tasks, newTask])
   }
 
   // Delete Task
@@ -110,8 +104,6 @@ const App = () => {
             </>
           )}
         />
-        <Route path='/about' component={About} />
-        <Footer />
       </div>
     </Router>
   )
