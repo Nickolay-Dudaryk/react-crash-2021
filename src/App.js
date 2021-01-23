@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Tasks from './components/Tasks'
-import AddTask from './components/AddTask'
+
+import Navigation from './components/Navigation'
+
+import HomeScreen from './screens/HomeScreen'
+import OverviewScreen from './screens/OverviewScreen'
+import MissedGoalsScreen from './screens/MissedGoalsScreen'
+import GoalGardenScreen from './screens/GoalGardenScreen'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -82,28 +86,22 @@ const App = () => {
   return (
     <Router>
       <div className='container'>
-        <Header
-          onAdd={() => setShowAddTask(!showAddTask)}
-          showAdd={showAddTask}
-        />
-        <Route
-          path='/'
-          exact
-          render={(props) => (
-            <>
-              {showAddTask && <AddTask onAdd={addTask} />}
-              {tasks.length > 0 ? (
-                <Tasks
-                  tasks={tasks}
-                  onDelete={deleteTask}
-                  onToggle={toggleReminder}
-                />
-              ) : (
-                'No Tasks To Show'
-              )}
-            </>
-          )}
-        />
+        <Navigation />
+        <Route path='/' exact>
+          <HomeScreen tasks={tasks} />
+        </Route>
+        <Route path='/goal-garden'>
+          <GoalGardenScreen 
+            setShowAddTask={setShowAddTask}
+            showAddTask={showAddTask}
+            addTask={addTask}
+            tasks={tasks}
+            deleteTask={deleteTask}
+            toggleReminder={toggleReminder}
+          />
+        </Route>
+        <Route path='/overview' component={OverviewScreen} />
+        <Route path='/missed-goals' component={MissedGoalsScreen} />
       </div>
     </Router>
   )
