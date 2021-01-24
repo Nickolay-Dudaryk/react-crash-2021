@@ -37,6 +37,15 @@ const App = () => {
     return data
   }
 
+  // Fetch Quote
+  // const fetchQuote = async () => {
+  //   const url = "https://type.fit/api/quotes";
+  //   const response = await fetch(url);
+  //   const data = await response.json();
+    
+  //   return data[0];
+  // }
+
   // Add Task
   const addTask = async (task) => {
     const res = await fetch('http://localhost:5000/tasks', {
