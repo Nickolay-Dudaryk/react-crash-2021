@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Navigation from './components/Navigation'
+import Footer from './components/Footer'
 
 import HomeScreen from './screens/HomeScreen'
 import OverviewScreen from './screens/OverviewScreen'
 import MissedGoalsScreen from './screens/MissedGoalsScreen'
 import GoalGardenScreen from './screens/GoalGardenScreen'
+import MyRewardsScreen from './screens/MyRewardsScreen'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
+  const [quote, setQuote] = useState('')
 
   useEffect(() => {
     const getTasks = async () => {
@@ -38,13 +41,16 @@ const App = () => {
   }
 
   // Fetch Quote
-  // const fetchQuote = async () => {
-  //   const url = "https://type.fit/api/quotes";
-  //   const response = await fetch(url);
-  //   const data = await response.json();
+  const fetchQuote = async () => {
+    const url = "https://type.fit/api/quotes";
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const randomIdx = Math.floor(Math.random() * 100);
     
-  //   return data[0];
-  // }
+    setQuote(data[randomIdx].text);
+  }
+
 
   // Add Task
   const addTask = async (task) => {
@@ -111,6 +117,8 @@ const App = () => {
         </Route>
         <Route path='/overview' component={OverviewScreen} />
         <Route path='/missed-goals' component={MissedGoalsScreen} />
+        <Route path='/my-rewards' component={MyRewardsScreen} />
+        <Footer quote={quote} addQuote={fetchQuote} />
       </div>
     </Router>
   )

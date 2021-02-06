@@ -1,16 +1,3 @@
 {
-  "tasks": [
-    {
-      "text": "another test task",
-      "day": "",
-      "reminder": false,
-      "id": 2
-    },
-    {
-      "text": "test task again",
-      "day": "",
-      "reminder": false,
-      "id": 3
-    }
-  ]
+  "tasks": []
 }
