@@ -21,7 +21,7 @@ const HomeScreen = ({ tasks }) => {
             )}
         </ul>
       </div>
-      <PlantGoal />
+      <PlantGoal tasks={tasks} />
       <Trends />
     </div>
   )
